@@ -53,7 +53,7 @@ public abstract class Employee extends Person {
 
     @Transient
     public boolean getIsManager() {
-        return !managedEmployees.isEmpty();
+        return !isManagerOf.isEmpty();
     }
 
     @ManyToOne

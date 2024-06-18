@@ -6,6 +6,7 @@ import lombok.*;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "product")
@@ -43,8 +44,29 @@ public class Product {
         return null; //TODO: logic
     }
 
-    //TODO: all associations to this class
-    //TODO: construcots with not mandatory!!!
+    @ManyToOne
+    @JoinColumn(name = "potter_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Potter potter;
+
+    @ManyToOne
+    @JoinColumn(name = "studio_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Studio studio;
+
+    @ManyToMany
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @Builder.Default
+    private Set<Material> materials = new HashSet<>(); //TODO: here on diagram is Many to one, we should change it
+
+    public Product(String name, Category category, Status status) {
+        this.name = name;
+        this.category = category;
+        this.status = status;
+    }
 
     public enum Category {
         BOWL,

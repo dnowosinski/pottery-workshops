@@ -8,6 +8,7 @@ import lombok.*;
 
 import java.sql.Struct;
 import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity(name = "material")
@@ -37,6 +38,6 @@ public class Material {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @Builder.Default
-    private Set<Product> products = new HashSet<>();
+    private Set<Product> products = new HashSet<>(); //TODO: check if not MANY to MANY
 
 }
